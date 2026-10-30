@@ -28,7 +28,8 @@ export default function squareRoot(number, tolerance = 0) {
   const requiredDelta = 1 / (10 ** tolerance);
 
   // Approximating the root value to the point when we get a desired precision.
-  while (Math.abs(number - (root ** 2)) > requiredDelta) {
+  const stepTolerance = requiredDelta / (2 * Math.max(1, Math.sqrt(number)));
+  while (Math.abs(number - (root ** 2)) > stepTolerance) {
     // Newton's method reduces in this case to the so-called Babylonian method.
     // These methods generally yield approximate results, but can be made arbitrarily
     // precise by increasing the number of calculation steps.
